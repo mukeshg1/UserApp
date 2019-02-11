@@ -1,0 +1,44 @@
+<mat-toolbar class="toolbar-style">
+  <img src="assets/images/logo.png" alt="logo" class="logo">
+  <a class="toolbar-style-link" href="#">Home</a>
+</mat-toolbar>
+<div class="container">
+<form class="register-form" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+  <h3>Create an account.</h3>
+  <h4><i>It's free and takes only a minute.</i></h4>
+  <mat-form-field class="register-full-width">
+      <mat-label>Id</mat-label>
+      <input matInput type="number" placeholder="Enter Id" name="id"  formControlName="id" required>
+      <mat-error *ngIf="registerForm.controls['name'].hasError('required')">{{getIdErrorMessage()}}</mat-error>
+    </mat-form-field>
+  <mat-form-field class="register-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Enter Name" name="name"  formControlName="name" required>
+    <mat-error *ngIf="registerForm.controls['name'].hasError('required')">{{getNameErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="register-full-width">
+    <mat-label>Address</mat-label>
+    <input matInput placeholder="Enter Address" name="address" formControlName="address">
+  </mat-form-field>
+
+  <mat-form-field class="register-full-width">
+    <mat-label>Date of Birth</mat-label>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a Date of Birth" name="dob" formControlName="dob" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker disabled="false"></mat-datepicker>
+    <mat-hint>Click on calendar icon to pick a date.</mat-hint>
+    <mat-error *ngIf="registerForm.controls['dob'].hasError('required')">{{getDOBErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="register-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Enter email address" name="email" formControlName="email" required>
+    <mat-error *ngIf="registerForm.controls['email'].hasError('required')">{{getEmailErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <button class="btn" mat-raised-button color="primary" [disabled]="registerForm.invalid">Register</button><br>
+</form>
+</div>
+<p ></p>
+<!--[disabled]="registerForm.invalid">-->
