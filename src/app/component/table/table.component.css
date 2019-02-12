@@ -1,0 +1,21 @@
+#users {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #users tbody:td, #users tbody:th {
+    border: 1px solid rgb(161, 222, 247);
+    padding: 8px;
+  }
+  
+  #users tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #users tr:hover {background-color: #ddd;}
+  
+  #users th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }

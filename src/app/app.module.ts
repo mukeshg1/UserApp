@@ -11,6 +11,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,7 +41,8 @@ import { EditTableComponent } from './component/edit-table/edit-table.component'
     ReactiveFormsModule,
     MatFormFieldModule,
     NoopAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 
   ],
   entryComponents: [

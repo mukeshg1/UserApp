@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Formdata, Id } from '../model/Formdata';
+import { Formdata, Id, Update } from '../model/Formdata';
 import { Observable } from 'rxjs';
 
 
@@ -33,9 +33,10 @@ export class FormdataService {
   }
 
   //Edit 
-  editTable(formdatas: Formdata):Observable<any> {
-    const url =`${this.formdatasUrl}/${formdatas.id}`;
-    return this.http.put(url, formdatas, httpOptions);
+  editTable(updatedatas: Formdata):Observable<any> {
+    console.log("Edit..");
+    const url =`${this.formdatasUrl}/${updatedatas.id}`;
+    return this.http.put(url, updatedatas, httpOptions);
   }
 
   deleteTable(formdatas: Formdata):Observable<Formdata>{

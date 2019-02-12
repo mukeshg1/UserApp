@@ -19,7 +19,7 @@
 
   <mat-form-field class="register-full-width">
     <mat-label>Address</mat-label>
-    <input matInput placeholder="Enter Address" name="address" formControlName="address">
+    <input matInput placeholder="Enter Address" name="address" formControlName="address" required>
   </mat-form-field>
 
   <mat-form-field class="register-full-width">
@@ -37,8 +37,10 @@
     <mat-error *ngIf="registerForm.controls['email'].hasError('required')">{{getEmailErrorMessage()}}</mat-error>
   </mat-form-field>
 
-  <button class="btn" mat-raised-button color="primary" [disabled]="registerForm.invalid">Register</button><br>
+  <button class="btn" mat-raised-button color="primary" (click)="openSnackBar('Successfully Registered')" [disabled]="registerForm.invalid">Register</button><br>
 </form>
 </div>
 <p ></p>
-<!--[disabled]="registerForm.invalid">-->
+<!--[disabled]="registerForm.invalid">
+
+(click)="openSnackBar('Successfully Registered')"-->

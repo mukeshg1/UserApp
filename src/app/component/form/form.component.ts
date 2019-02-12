@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { Formdata, Id } from '../../model/Formdata';
-import { FormdataService } from 'src/app/services/formdata.service';
+import { Id } from '../../model/Formdata';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -16,9 +16,15 @@ export class FormComponent implements OnInit {
   incrid: number;
   @Output() addData: EventEmitter<any> = new EventEmitter();
 
-  constructor(private formdatasService: FormdataService) { }
+  constructor(private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   //Form Group
@@ -42,9 +48,12 @@ export class FormComponent implements OnInit {
         dob: this.registerForm.controls['dob'].value,
         address: this.registerForm.controls['address'].value
       };
-      console.log(dataList);
-      this.addData.emit(dataList);
-      this.registerForm.reset();
+    console.log(dataList);
+    this.addData.emit(dataList);
+    this.registerForm.controls['id'].setErrors(null);
+    this.registerForm.reset();
+    this.registerForm.markAsPristine();
+    this.registerForm.markAsUntouched();
   }
 
   getIdErrorMessage(){

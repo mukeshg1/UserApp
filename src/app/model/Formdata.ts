@@ -7,4 +7,9 @@ export class Formdata{
   }
 export class Id{
     dataid: number;
-  }
+}
+export class Update{
+  id: number;
+  name: string;
+  address: string;
+}

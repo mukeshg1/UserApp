@@ -1,27 +1,36 @@
-<form>
   <h1 mat-dialog-title>Hi {{ data.dname }}!</h1>
   <div mat-dialog-content>
     <mat-form-field class="register-full-width">
+      <mat-label>Id</mat-label>
+      <input matInput value={{data.id}} [(ngModel)]="data.did" disabled>
+    </mat-form-field>
+    <mat-form-field class="register-full-width">
       <mat-label>Name</mat-label>
-      <input matInput value={{data.dname}}>
+      <input matInput value={{data.name}} [(ngModel)]="data.dname">
     </mat-form-field>
     <mat-form-field class="register-full-width">
       <mat-label>Address</mat-label>
-      <input matInput value={{data.daddress}} >
+      <input matInput value={{data.address}} [(ngModel)]="data.daddress">
     </mat-form-field>
     <mat-form-field class="register-full-width">
         <mat-label>Date of Birth</mat-label>
-        <input matInput value={{data.ddob}} disabled>
+        <input matInput value={{data.dob}} [(ngModel)]="data.ddob" disabled>
       </mat-form-field>
     <mat-form-field class="register-full-width">
       <mat-label>Email</mat-label>
-      <input matInput value={{data.demail}} disabled>
+      <input matInput value={{data.email}} [(ngModel)]="data.demail" disabled>
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Discard</button>
-    <button mat-button (click)="saveData()" cdkFocusInitial>Save</button>
+    <button mat-button (click)="openSnackBar('Edit Successfull')" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
   </div>
-</form>
 
-<!--[(ngModel)]="data.demail"-->
+
+
+
+  
+<!--[(ngModel)]="data.demail"
+[mat-dialog-close]="data"
+
+-->
