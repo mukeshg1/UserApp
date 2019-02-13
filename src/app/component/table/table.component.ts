@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Inject} from '@angular/core';
-import { Formdata, Id, Update } from '../../model/Formdata';
+import { Formdata, Id } from '../../model/Formdata';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FormdataService } from '../../services/formdata.service';
 import { EditTableComponent } from '../edit-table/edit-table.component';
@@ -22,6 +22,9 @@ export class TableComponent implements OnInit {
   ngOnInit() {
    this.formdatasService.getFormdatas().subscribe( formdatas => {
      this.formdatas = formdatas;
+   },
+   error => {
+     console.log(error.error); 
    });
     }
 
@@ -41,12 +44,19 @@ export class TableComponent implements OnInit {
     addData(datas: Formdata){
       this.formdatasService.addData(datas).subscribe(datas => {
         this.formdatas.push(datas);
+      },
+      error => {
+        console.log(error.error); 
+      },
+      ()  => {
+        this.count = this.formdatas.length;
+        this.formdatasService.getCount(this.count);
       })
-      this.count = this.formdatas.length+1;
-      this.formdatasService.getCount(this.count);
+      
       console.log(datas.id);
     }
 
+    //Setting time duration and message for snackbar
     openSnackBar(message: string, action: string) {
       this.snackBar.open(message, action, {
         duration: 2000,
@@ -58,6 +68,7 @@ export class TableComponent implements OnInit {
     daddress: string;
     ddob: string;
     demail: string;
+    //Dialog is opened
     openDialog(form): void {
       console.log('The Dialog was opened.');
       const dialogRef =  this.dialog.open(EditTableComponent, {
@@ -72,6 +83,7 @@ export class TableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       console.log('The dialog was closed');
+
       //Update in UI
       form.name = result.dname;
       form.address = result.daddress;

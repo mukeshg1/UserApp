@@ -50,7 +50,6 @@ export class FormComponent implements OnInit {
       };
     console.log(dataList);
     this.addData.emit(dataList);
-    this.registerForm.controls['id'].setErrors(null);
     this.registerForm.reset();
     this.registerForm.markAsPristine();
     this.registerForm.markAsUntouched();
