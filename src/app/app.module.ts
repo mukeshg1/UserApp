@@ -19,13 +19,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './component/table/table.component';
 import { FormComponent } from './component/form/form.component';
 import { EditTableComponent } from './component/edit-table/edit-table.component';
+import { UserCountComponent } from './component/user-count/user-count.component';
  
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
     FormComponent,
-    EditTableComponent
+    EditTableComponent,
+    UserCountComponent
   ],
   imports: [
     BrowserModule,
