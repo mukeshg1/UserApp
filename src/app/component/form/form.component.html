@@ -37,7 +37,7 @@
     <mat-error *ngIf="registerForm.controls['email'].hasError('required')">{{getEmailErrorMessage()}}</mat-error>
   </mat-form-field>
 
-  <button class="btn" mat-raised-button color="primary" (click)="openSnackBar('Successfully Registered')" [disabled]="registerForm.invalid">Register</button><br>
+  <button class="btn" mat-raised-button color="primary" matTooltip="Click here to Register" (click)="openSnackBar('Successfully Registered')" [disabled]="registerForm.invalid">Register</button><br>
 </form>
 </div>
 <p ></p>

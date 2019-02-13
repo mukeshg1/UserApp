@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Inject} from '@angular/core';
 import { Formdata, Id, Update } from '../../model/Formdata';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { FormdataService } from '../../services/formdata.service';
 import { EditTableComponent } from '../edit-table/edit-table.component';
 
@@ -14,27 +14,17 @@ import { EditTableComponent } from '../edit-table/edit-table.component';
 export class TableComponent implements OnInit {
   formdatas: Formdata[];
   value: Id[];
+  count: number = 2;
   @Output() deleteForm: EventEmitter<Formdata> = new EventEmitter();
 
-  constructor(private formdatasService: FormdataService, public dialog: MatDialog) { }
+  constructor(private formdatasService: FormdataService, public dialog: MatDialog, private snackBar:MatSnackBar) { }
 
   ngOnInit() {
    this.formdatasService.getFormdatas().subscribe( formdatas => {
      this.formdatas = formdatas;
    });
-
-   
     }
 
-    //Method when Edit is pressed.
-    onEdit(updatedatas: Update, form){
-      console.log('Edit working..');
-      //form.id = updatedatas.id;
-      //form.name = updatedatas.name;
-      
-      //this.formdatasService.editTable(updatedatas).subscribe( updatedatas =>
-        //console.log(updatedatas.id));
-    }
 
     //Method when Delete is pressed.
     onDelete(form){
@@ -42,6 +32,8 @@ export class TableComponent implements OnInit {
       console.log(this.formdatas = this.formdatas.filter(c => c.id != form.id));
       console.log(form.id);
       console.log(this.formdatas);
+      this.count = this.formdatas.length;
+      this.formdatasService.getCount(this.count);
       //Delete from server
       //this.formdatasService.deleteTable(form).subscribe();
     }
@@ -50,7 +42,15 @@ export class TableComponent implements OnInit {
       this.formdatasService.addData(datas).subscribe(datas => {
         this.formdatas.push(datas);
       })
+      this.count = this.formdatas.length+1;
+      this.formdatasService.getCount(this.count);
       console.log(datas.id);
+    }
+
+    openSnackBar(message: string, action: string) {
+      this.snackBar.open(message, action, {
+        duration: 2000,
+      });
     }
 
     did: number;

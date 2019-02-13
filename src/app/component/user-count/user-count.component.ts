@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormdataService } from '../../services/formdata.service';
 
 @Component({
   selector: 'app-user-count',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-count.component.css']
 })
 export class UserCountComponent implements OnInit {
+  countd: number = 2;
+  
 
-  constructor() { }
+  constructor( private ts:FormdataService) { }
 
   ngOnInit() {
+    this.ts.getCountSubject.subscribe(
+      count => this.countd = count)
   }
-
 }

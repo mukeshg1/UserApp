@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Formdata, Id, Update } from '../model/Formdata';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 
 const httpOptions = {
@@ -14,6 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class FormdataService {
+  public getCountSubject = new Subject<any>();
   formdatasUrl: string = 'https://my-json-server.typicode.com/mukeshg1/AngularApp/users';
   idUrl: string = 'https://my-json-server.typicode.com/mukeshg1/AngularApp/id';
 
@@ -49,5 +50,11 @@ export class FormdataService {
   addData(formdatas: Formdata):Observable<Formdata> {
     console.log("Added")
     return this.http.post<Formdata>(this.formdatasUrl, formdatas, httpOptions);
+  }
+
+
+  //Get Count
+  getCount(count){
+    this.getCountSubject.next(count);
   }
 }

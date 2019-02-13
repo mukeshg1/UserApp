@@ -22,8 +22,8 @@
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Discard</button>
-    <button mat-button (click)="openSnackBar('Edit Successfull')" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+    <button mat-raised-button color="warn" (click)="onNoClick()">Discard</button>
+    <button mat-raised-button color="primary" (click)="openSnackBar('Record Edit Successfull')" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
   </div>
 
 

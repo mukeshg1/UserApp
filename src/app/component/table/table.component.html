@@ -1,6 +1,6 @@
 <app-form (addData)="addData($event)"></app-form>
 <div class="container">
-    
+    <app-user-count></app-user-count>
     <div id="users">
       <table>
         <th> Name </th>
@@ -14,8 +14,8 @@
             <td>{{ form.address }}</td>
             <td>{{ form.dob }}</td>
             <td>{{ form.email }}</td>
-            <td><button mat-raised-button (click)="openDialog(form)">Edit</button>
-            <button mat-raised-button (click)="onDelete(form)">X</button></td>
+            <td><button mat-raised-button matTooltip="Click here to edit" (click)="openDialog(form)">Edit</button>
+            <button mat-raised-button color="warn" matTooltip="Click here to delete" (click)="openSnackBar('Record Successfully Deleted')" (click)="onDelete(form)">X</button></td>
         </tr>
         </tbody>      
       </table>
